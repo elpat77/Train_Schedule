@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FireBase</title>
+</head>
+
+<body>
+    <form id="login">
+        <span id="text-input">
+            Email :
+            <input type="text" id="emailInput" />
+        </span>
+        <span id="text-input2">
+            Password:
+            <input type="password" id="pwInput" />
+        </span>
+        <input type="submit" value="Submit" id="loginSubmit">
+    </form>
+    <div class="logoutButton">
+        <!-- <button id="logout">Logout</button> -->
+    </div>
+
+</body>
+<!-- firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<!-- firebase db -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+<!-- firebase auth -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+<!-- jquery cdn -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- user js -->
+<script src="./javascript/apps.js"></script>
+
+</html>
