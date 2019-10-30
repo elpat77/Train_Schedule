@@ -25,6 +25,18 @@ $(document).ready(function () {
         data: ["a", "b", "c", "d"]
     });
 
+    const timeNow = moment();
+    const timeLater = moment().add(20, 'minutes');
+
+    console.log(timeNow.format('hh:mm:ss'));
+    console.log(timeLater.format('hh:mm:ss'));
+
+    console.log(timeNow.diff(timeLater, 'minutes'));
+
+
+    const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
+    console.log(detailedDate);
+
     // // //take user event from the on click-submit button and dumps it in the database
     // $('#text-submit').on('click', event => {
     //     event.preventDefault();
