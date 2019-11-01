@@ -34,42 +34,18 @@
                                         <h5 class="card-header">Current Schedule</h5>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-striped w-auto">
+                                        <table class="table table-striped">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th id="departureStation" scope="col">Departure Station</th>
-                                                    <th id="routeNumber" scope="col">Route Number</th>
-                                                    <th id="frequency" scope="col">Frequency (min)</th>
-                                                    <th id="nextArrrival" scope="col">Time of next arrival</th>
-                                                    <th id="minutesAway" scope="col">Minutes away</th>
+                                                    <th id="departureStationTitle" scope="col">Departure Station</th>
+                                                    <th id="routeNumberTitle" scope="col">Route Number</th>
+                                                    <th id="frequencyTitle" scope="col">Frequency (min)</th>
+                                                    <th id="nextArrrivalTitle" scope="col">Time of next arrival</th>
+                                                    <th id="minutesAwayTitle" scope="col">Minutes away</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -82,16 +58,17 @@
                                     <div class="card mb-2 text-center routeHeader">
                                         <h5 class="card-header">Add your own route</h5>
                                     </div>
+
                                     <form>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mt-3 formField">
                                                 <label for="departureStation">Departure Station</label>
-                                                <input type="text" class="form-control" id="departureStation"
+                                                <input type="text" class="form-control" id="departureStationInput"
                                                     placeholder="Market & 7th">
                                             </div>
                                             <div class="form-group col-md-6 mt-3 formField">
                                                 <label for="routeNumber">Route Number</label>
-                                                <input type="text" class="form-control" id="routeNumber"
+                                                <input type="text" class="form-control" id="routeNumberInput"
                                                     placeholder="30">
                                             </div>
                                         </div>
@@ -99,22 +76,21 @@
                                             <div class="form-group col-md-6 mt-3 formField">
                                                 <label for="departureTime">Time of first departure (military time)
                                                 </label>
-                                                <input type="text" class="form-control" id="departureTime"
+                                                <input type="text" class="form-control" id="departureTimeInput"
                                                     placeholder="hh:mm">
                                             </div>
                                             <div class="form-group col-md-6 mt-3 formField">
-                                                <label for="arrivalStation">Frequency Time (minutes)</label>
-                                                <input type="text" class="form-control" id="arrivalStation"
+                                                <label for="frequency">Frequency Time (minutes)</label>
+                                                <input type="text" class="form-control" id="frequencyInput"
                                                     placeholder="60">
                                             </div>
                                         </div>
-
                                         <div class="container">
                                             <div class="row justify-content-center my-3">
-                                                <a href="index.html" class="btn btn-lg bg-primary border-dark"
+                                                <button type="submit" class="btn btn-lg bg-primary border-dark"
                                                     id="submit">Show me
                                                     the
-                                                    times!</a>
+                                                    times!</button>
                                             </div>
                                         </div>
                                     </form>
