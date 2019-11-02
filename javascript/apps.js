@@ -1,20 +1,20 @@
 $(document).ready(function () {
     // Your web app's Firebase configuration
-    // const firebaseConfig = {
-    //     apiKey: "AIzaSyAyn5d3zmWaotm4nrIdRM5H9DcJmqZPU9g",
-    //     authDomain: "train-schedule-af93c.firebaseapp.com",
-    //     databaseURL: "https://train-schedule-af93c.firebaseio.com",
-    //     projectId: "train-schedule-af93c",
-    //     storageBucket: "train-schedule-af93c.appspot.com",
-    //     messagingSenderId: "744170584113",
-    //     appId: "1:744170584113:web:5c3ec4f66d7589a0c87d10"
-    // };
+    const firebaseConfig = {
+        apiKey: "AIzaSyAyn5d3zmWaotm4nrIdRM5H9DcJmqZPU9g",
+        authDomain: "train-schedule-af93c.firebaseapp.com",
+        databaseURL: "https://train-schedule-af93c.firebaseio.com",
+        projectId: "train-schedule-af93c",
+        storageBucket: "train-schedule-af93c.appspot.com",
+        messagingSenderId: "744170584113",
+        appId: "1:744170584113:web:5c3ec4f66d7589a0c87d10"
+    };
     // Initialize Firebase
-    // firebase.initializeApp(firebaseConfig);
-    // const db = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
 
-    // 2. Button for adding train information
+    // Button for grabbing and submitting route information
     $("#submit").on("click", event => {
         event.preventDefault();
         console.log("clicked");
@@ -33,7 +33,7 @@ $(document).ready(function () {
         $('#frequencyInput').val('');
 
 
-        // Creates local "temporary" object for holding employee data
+        // Creates local "temporary" object for holding route data
         var newRoute = {
             departureStation: departureStation,
             routeNumber: routeNumber,
@@ -45,21 +45,39 @@ $(document).ready(function () {
         console.log("hello" + newRoute.departureTime);
         console.log("hello" + newRoute.frequency);
 
-        // db.ref().push(newEmp);
+
+        //updates the database with the new routes
+        db.ref('Departure Times').push(newRoute);
+    });
+
+    // Create Firebase event for adding routes to the database and a row in the html with the information
+
+    //display a snapshot of the current database
+    db.ref('Departure Times').on("child_added", function (dbSnapshot) {
+        console.log(dbSnapshot.val());
+
+        // Store user input into individual variables.
+        var departureStation = dbSnapshot.val().departureStation;
+        console.log(departureStation);
+        var routeNumber = dbSnapshot.val().routeNumber;
+        console.log(routeNumber);
+        var departureTime = dbSnapshot.val().departureTime;
+        console.log(departureTime);
+        var frequency = dbSnapshot.val().frequency;
+        console.log(frequency);
+
+        //adds variable values into a new row within our table
+        var newRow = $("<tr>").append(
+            $("<td>").text(departureStation),
+            $("<td>").text(routeNumber),
+            $("<td>").text(departureTime),
+            $("<td>").text(frequency),
+            // $("<td>").text(minAway),
+        );
+        // Append the new row to the table
+        $("#route-table > tbody").append(newRow);
+
     })
-
-    //     db.ref().on('value', snap => {
-    //         console.log(snap.val());
-
-    //     })
-
-    //     db.ref('data2').set({
-    //         data: [1, 2, 3, 4]
-    //     });
-    //     db.ref('data1').set({
-    //         data: ["a", "b", "c", "d"]
-    //     });
-
     //     const timeNow = moment();
     //     const timeLater = moment().add(20, 'minutes');
 
@@ -72,17 +90,4 @@ $(document).ready(function () {
     //     const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
     //     console.log(detailedDate);
 
-    //     // //take user event from the on click-submit button and dumps it in the database
-    //     $('#text-submit').on('click', event => {
-    //         event.preventDefault();
-    //         console.log("I've been clicked");
-    //         db.ref().set({
-    //             text: $("#user-text").val()
-    //         });
-    //     });
-    //     //takes the values from the db and dumps it back in our website
-    //     db.ref().on('value', snap => {
-    //         console.log(snap.val());
-    //         $('#db-text').html(snap.val().text);
-    //     })
 });
