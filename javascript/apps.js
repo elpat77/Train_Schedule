@@ -26,7 +26,7 @@ $(document).ready(function () {
         var routeNumber = $("#routeNumberInput").val().trim();
         $('#routeNumberInput').val('');
 
-        var departureTime = moment($("#departureTimeInput").val().trim(), "MM/DD/YYYY").format("X");
+        var departureTime = moment($("#departureTimeInput").val().trim(), "hh:mm").format("h:mm a");
         $('#departureTimeInput').val('');
 
         var frequency = $("#frequencyInput").val().trim();
@@ -58,13 +58,26 @@ $(document).ready(function () {
 
         // Store user input into individual variables.
         var departureStation = dbSnapshot.val().departureStation;
-        console.log(departureStation);
+        // console.log(departureStation);
         var routeNumber = dbSnapshot.val().routeNumber;
-        console.log(routeNumber);
+        // console.log(routeNumber);
         var departureTime = dbSnapshot.val().departureTime;
-        console.log(departureTime);
+        // console.log(departureTime);
         var frequency = dbSnapshot.val().frequency;
-        console.log(frequency);
+        console.log("frequency", frequency);
+
+        // To calculate the minutes away
+        const timeNow = moment();
+        const timeLater = moment().add(frequency, 'minutes');
+        console.log("time now", timeNow.format('hh:mm:ss'));
+        console.log("time plus frequency", timeLater.format('hh:mm:ss'));
+
+        const difference = timeNow.diff(timeLater, 'minutes');
+        console.log("dif", difference);
+
+        const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
+        console.log(detailedDate);
+
 
         //adds variable values into a new row within our table
         var newRow = $("<tr>").append(
@@ -72,22 +85,16 @@ $(document).ready(function () {
             $("<td>").text(routeNumber),
             $("<td>").text(departureTime),
             $("<td>").text(frequency),
-            // $("<td>").text(minAway),
+            $("<td>").text(difference),
         );
         // Append the new row to the table
         $("#route-table > tbody").append(newRow);
 
     })
-    //     const timeNow = moment();
-    //     const timeLater = moment().add(20, 'minutes');
-
-    //     console.log(timeNow.format('hh:mm:ss'));
-    //     console.log(timeLater.format('hh:mm:ss'));
-
-    //     console.log(timeNow.diff(timeLater, 'minutes'));
 
 
-    //     const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
-    //     console.log(detailedDate);
+
+
+
 
 });
