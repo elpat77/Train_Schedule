@@ -120,12 +120,14 @@ $(document).ready(function () {
             $("#route-table > tbody").append(newRow);
 
         })
-    }
 
+    }
     function timer() {
         $('#displayInfo').empty();
         showInformation();
         console.log('arrival time has been updated');
     }
     showInformation();
+
+
 });
