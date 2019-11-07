@@ -82,6 +82,7 @@ $(document).ready(function () {
 
             //current time
             const timeNow = moment();
+            $(".time-header").html("The current time is " + (moment(timeNow).format("hh:mm a")));
             console.log("time now", timeNow.format('hh:mm:ss'));
 
             //time later= current time + frequency
