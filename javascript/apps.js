@@ -26,11 +26,21 @@ $(document).ready(function () {
         var routeNumber = $("#routeNumberInput").val().trim();
         $('#routeNumberInput').val('');
 
-        var departureTime = moment($("#departureTimeInput").val().trim(), "hh:mm").format("h:mm a");
+        var departureTime = $("#departureTimeInput").val().trim();
         $('#departureTimeInput').val('');
+
+        // var departureTime = moment($("#departureTimeInput").val().trim(), "hh:mm").format("h:mm a");
+        // $('#departureTimeInput').val('');
 
         var frequency = $("#frequencyInput").val().trim();
         $('#frequencyInput').val('');
+
+        //create an alert if the fields are not filled
+        if ((departureStation === '') || (routeNumber === '') ||
+            (departureTime === '') || (frequency === '')) {
+            alert('Please fill out all the fields');
+            return false;
+        }
 
 
         // Creates local "temporary" object for holding route data
@@ -75,16 +85,19 @@ $(document).ready(function () {
         const difference = timeNow.diff(timeLater, 'minutes');
         console.log("dif", difference);
 
-        const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
-        console.log(detailedDate);
+        const remaining = difference % frequency;
+        console.log("rem", remaining)
+
+        // const detailedDate = moment().format('MMMM YYYY dddd, hh:mm:ss');
+        // console.log(detailedDate);
 
 
         //adds variable values into a new row within our table
         var newRow = $("<tr>").append(
             $("<td>").text(departureStation),
             $("<td>").text(routeNumber),
+            $("<td>").text(frequency + " minutes"),
             $("<td>").text(departureTime),
-            $("<td>").text(frequency),
             $("<td>").text(difference),
         );
         // Append the new row to the table
