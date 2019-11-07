@@ -12,6 +12,7 @@ $(document).ready(function () {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
+    setInterval(timer, 60000);
 
 
     // Button for grabbing and submitting route information
@@ -50,10 +51,6 @@ $(document).ready(function () {
             departureTime: departureTime,
             frequency: frequency
         };
-        // console.log("hello" + newRoute.departureStation);
-        // console.log("hello" + newRoute.routeNumber);
-        // console.log("hello" + newRoute.departureTime);
-        // console.log("hello" + newRoute.frequency);
 
 
         //updates the database with the new routes
@@ -63,67 +60,70 @@ $(document).ready(function () {
     // Create Firebase event for adding routes to the database and a row in the html with the information
 
     //display a snapshot of the current database
-    db.ref('Departure Times').on("child_added", function (dbSnapshot) {
-        console.log(dbSnapshot.val());
+    function showInformation() {
+        db.ref('Departure Times').on("child_added", function (dbSnapshot) {
+            console.log(dbSnapshot.val());
 
-        // Store user input into individual variables.
-        var departureStation = dbSnapshot.val().departureStation;
-        // console.log(departureStation);
-        var routeNumber = dbSnapshot.val().routeNumber;
-        // console.log(routeNumber);
-        var departureTime = dbSnapshot.val().departureTime;
-        // console.log(departureTime);
-        var frequency = dbSnapshot.val().frequency;
-        console.log("frequency", frequency);
-
-        // To calculate the minutes away
-
-        // First Time (pushed back 1 year to make sure it comes before current time)
-        var firstTimeConverted = moment(departureTime, "HH:mm").subtract(1, "years");
-        console.log(firstTimeConverted);
-
-        //current time
-        const timeNow = moment();
-        console.log("time now", timeNow.format('hh:mm:ss'));
-
-        //time later= current time + frequency
-        const timeLater = moment().add(frequency, 'minutes');
-        console.log("time plus frequency", timeLater.format('hh:mm:ss'));
-
-        //difference between times
-        const difference = moment().diff(moment(firstTimeConverted), "minutes");
-        console.log("dif", difference);
-
-        //remainder of times apart
-        const remaining = difference % frequency;
-        console.log("rem", remaining)
-
-        // minutes until next train
-        var minutesArrival = frequency - remaining;
-        console.log("minutes for arrival: " + minutesArrival);
-
-        // next train arrival
-        var nextArrival = moment().add(minutesArrival, "minutes");
-        console.log("arrival time: " + moment(nextArrival).format("hh:mm a"));
-        console.log(nextArrival);
+            // Store user input into individual variables.
+            var departureStation = dbSnapshot.val().departureStation;
+            // console.log(departureStation);
+            var routeNumber = dbSnapshot.val().routeNumber;
+            // console.log(routeNumber);
+            var departureTime = dbSnapshot.val().departureTime;
+            // console.log(departureTime);
+            var frequency = dbSnapshot.val().frequency;
+            console.log("frequency", frequency);
 
 
-        //adds variable values into a new row within our table
-        var newRow = $("<tr>").append(
-            $("<td>").text(departureStation),
-            $("<td>").text(routeNumber),
-            $("<td>").text(frequency + " minutes"),
-            $("<td>").text(moment(nextArrival).format("hh:mm")),
-            $("<td>").text(minutesArrival),
-        );
-        // Append the new row to the table
-        $("#route-table > tbody").append(newRow);
+            // First Time (pushed back 1 year to make sure it comes before current time)
+            var firstTimeConverted = moment(departureTime, "HH:mm").subtract(1, "years");
+            console.log(firstTimeConverted);
 
-    })
+            //current time
+            const timeNow = moment();
+            console.log("time now", timeNow.format('hh:mm:ss'));
 
+            //time later= current time + frequency
+            const timeLater = moment().add(frequency, 'minutes');
+            console.log("time plus frequency", timeLater.format('hh:mm:ss'));
 
+            //difference between times
+            const difference = moment().diff(moment(firstTimeConverted), "minutes");
+            console.log("dif", difference);
 
+            //remainder of times apart
+            const remaining = difference % frequency;
+            console.log("rem", remaining)
 
+            // minutes until next bus
+            var minutesArrival = frequency - remaining;
+            console.log("minutes for arrival: " + minutesArrival);
+            if (minutesArrival === 1) {
+                minutesArrival = "Your bus is arriving soon!";
+            }
 
+            // next arrival
+            var nextArrival = moment().add(minutesArrival, "minutes");
+            console.log("arrival time: " + moment(nextArrival).format("hh:mm a"));
 
+            //adds variable values into a new row within our table
+            var newRow = $("<tr>").append(
+                $("<td>").text(departureStation),
+                $("<td>").text(routeNumber),
+                $("<td>").text(frequency + " minutes"),
+                $("<td>").text(moment(nextArrival).format("hh:mm")),
+                $("<td>").text(minutesArrival),
+            );
+            // Append the new row to the table
+            $("#route-table > tbody").append(newRow);
+
+        })
+    }
+
+    function timer() {
+        $('#displayInfo').empty();
+        showInformation();
+        console.log('arrival time has been updated');
+    }
+    showInformation();
 });
