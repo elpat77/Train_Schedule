@@ -22,24 +22,24 @@
                 <div class="row justify-content-md-center mt-5">
                     <div class="col-md-12 col-sm-12">
                         <div class="card text-center border border-dark bg-primary mb-4">
-                            <h3 class="card-header appHearder ">
+                            <h1 class="card-header appHearder ">
                                 Bus Departure Times
-                            </h3>
+                            </h1>
                         </div>
 
                         <div class="container border border-dark mb-4">
                             <div class="row justify-content-md-center my-3">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="card mb-2 text-center scheduleHeader">
-                                        <h5 class="card-header">Current Schedule</h5>
+                                        <h2 class="card-header">Current Schedule</h2>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="route-table">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th id="departureStationTitle" scope="col">Departure Station</th>
-                                                    <th id="routeNumberTitle" scope="col">Route Number</th>
-                                                    <th id="frequencyTitle" scope="col">Frequency (min)</th>
+                                                    <th id="routeNumberTitle" scope="col">Route (name or number)</th>
+                                                    <th id="frequencyTitle" scope="col">Frequency (minutes)</th>
                                                     <th id="nextArrrivalTitle" scope="col">Time of next arrival</th>
                                                     <th id="minutesAwayTitle" scope="col">Minutes away</th>
                                                 </tr>
@@ -56,33 +56,40 @@
                             <div class="row justify-content-md-center my-3">
                                 <div class="col-md-12 col-sm-12 ">
                                     <div class="card mb-2 text-center routeHeader">
-                                        <h5 class="card-header">Add your own route</h5>
+                                        <h2 class="card-header">Add your own route</h2>
                                     </div>
 
                                     <form>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mt-3 formField">
-                                                <label for="departureStation">Departure Station</label>
+                                                <label for="departureStation">
+                                                    <h3>Departure Point</h3>
+                                                </label>
                                                 <input type="text" class="form-control" id="departureStationInput"
-                                                    placeholder="Market & 7th">
+                                                    placeholder="station name or street intersection">
                                             </div>
                                             <div class="form-group col-md-6 mt-3 formField">
-                                                <label for="routeNumber">Route Number</label>
+                                                <label for="routeNumber">
+                                                    <h3>Route</h3>
+                                                </label>
                                                 <input type="text" class="form-control" id="routeNumberInput"
-                                                    placeholder="30">
+                                                    placeholder="name, letter or number">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6 mt-3 formField">
-                                                <label for="departureTime">Time of first departure (military time)
+                                                <label for="departureTime">
+                                                    <h3>Time of first departure </h3>
                                                 </label>
                                                 <input type="text" class="form-control" id="departureTimeInput"
-                                                    placeholder="hh:mm">
+                                                    placeholder="military time - hh:mm">
                                             </div>
                                             <div class="form-group col-md-6 mt-3 formField">
-                                                <label for="frequency">Frequency Time (minutes)</label>
+                                                <label for="frequency">
+                                                    <h3>Frequency Time </h3>
+                                                </label>
                                                 <input type="text" class="form-control" id="frequencyInput"
-                                                    placeholder="60">
+                                                    placeholder="minutes">
                                             </div>
                                         </div>
                                         <div class="container">

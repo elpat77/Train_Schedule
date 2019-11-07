@@ -113,16 +113,10 @@ $(document).ready(function () {
                 $("<td>").text(routeNumber),
                 $("<td>").text(frequency + " minutes"),
                 $("<td>").text(moment(nextArrival).format("h:mm a")),
-                $("<td>").text(minutesArrival + " minutes"),
+                $("<td>").text(minutesArrival),
             );
             // Append the new row to the table
             $("#route-table > tbody").append(newRow);
-
-            function changeContent() {
-                var x = document.getElementById('myTable').rows
-                var y = x[0].cells
-                y[0].innerHTML = "NEW CONTENT"
-            }
 
         })
     }
