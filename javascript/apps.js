@@ -77,7 +77,7 @@ $(document).ready(function () {
 
 
             // First Time (pushed back 1 year to make sure it comes before current time)
-            var firstTimeConverted = moment(departureTime, "HH:mm").subtract(1, "years");
+            var firstTimeConverted = moment(departureTime, "hh:mm").subtract(1, "years");
             console.log(firstTimeConverted);
 
             //current time
@@ -86,8 +86,8 @@ $(document).ready(function () {
             console.log("time now", timeNow.format('hh:mm:ss'));
 
             //time later= current time + frequency
-            const timeLater = timeNow.add(frequency, 'minutes');
-            console.log("time plus frequency", timeLater.format('hh:mm:ss'));
+            //const timeLater = timeNow.add(frequency, 'minutes');
+            // console.log("time plus frequency", timeLater.format('hh:mm:ss'));
 
             //difference between times
             const difference = moment().diff(moment(firstTimeConverted), "minutes");
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
             // next arrival
             var nextArrival = timeNow.add(minutesArrival, "minutes");
-            let nextTrain = moment(nextArrival).format("hh:mm a");
+            nextArrival = moment(nextArrival).format("hh:mm a");
             console.log("arrival time: " + moment(nextArrival).format("hh:mm a"));
 
             //adds variable values into a new row within our table
@@ -114,7 +114,7 @@ $(document).ready(function () {
                 $("<td>").text(departureStation),
                 $("<td>").text(routeNumber),
                 $("<td>").text(frequency + " minutes"),
-                $("<td>").text(nextTrain),
+                $("<td>").text(nextArrival),
                 $("<td>").text(minutesArrival),
             );
             // Append the new row to the table
