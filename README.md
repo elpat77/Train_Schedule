@@ -22,9 +22,6 @@
   
   * Users from many different machines must be able to view same train times.
   
-  * Styling and theme are completely up to you. Get Creative!
+  * Styling and theme should be done with Bootstrap and CSS
 
-### Example Site
-
-![train homework](Train_Time_Image.png)
 
