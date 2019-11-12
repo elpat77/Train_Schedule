@@ -2,7 +2,7 @@
 
 ### Overview
 
-The objective of this assignment was to create a train schedule application that incorporates Firebase (database) to host arrival and departure data. Your app will retrieve and manipulate this information with Moment.js. This website will provide up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station. The following specifications needed to be met:
+### The objective of this assignment was to create a train schedule application that incorporates Firebase (database) to host arrival and departure data. Your app will retrieve and manipulate this information with Moment.js. This website will provide up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station. The following specifications needed to be met:
 
 ### Instructions
 
